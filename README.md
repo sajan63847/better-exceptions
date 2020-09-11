@@ -1,4 +1,4 @@
-# better-exceptions [![Travis](https://img.shields.io/travis/Qix-/better-exceptions.svg?style=flat-square)](https://travis-ci.org/Qix-/better-exceptions)
+# ng-exceptions [![Travis](https://img.shields.io/travis/Qix-/ng-exceptions.svg?style=flat-square)](https://travis-ci.org/Qix-/ng-exceptions)
 
 Pretty and more helpful exceptions in Python, automatically.
 
@@ -6,56 +6,56 @@ Pretty and more helpful exceptions in Python, automatically.
 
 ## Usage
 
-Install `better_exceptions` via pip:
+Install `ng_exceptions` via pip:
 
 ```console
-$ pip install better_exceptions
+$ pip install ng_exceptions
 ```
 
-And set the `BETTER_EXCEPTIONS` environment variable to any value:
+And set the `NG_EXCEPTIONS` environment variable to any value:
 
 ```bash
-export BETTER_EXCEPTIONS=1  # Linux / OSX
-setx BETTER_EXCEPTIONS 1    # Windows
+export NG_EXCEPTIONS=1  # Linux / OSX
+setx NG_EXCEPTIONS 1    # Windows
 ```
 
 That's it!
 
 ### Python REPL (Interactive Shell)
 
-In order to use `better_exceptions` in the Python REPL, first install the package (as instructed above) and run:
+In order to use `ng_exceptions` in the Python REPL, first install the package (as instructed above) and run:
 
 ```console
-$ python -m better_exceptions
+$ python -m ng_exceptions
 Type "help", "copyright", "credits" or "license" for more information.
-(BetterExceptionsConsole)
+(NgExceptionsConsole)
 >>>
 ```
 
-in order to drop into a `better_exceptions`-enabled Python interactive shell.
+in order to drop into a `ng_exceptions`-enabled Python interactive shell.
 
 ### Advanced Usage
 
 If you want to allow the entirety of values to be outputted instead of being truncated to a certain amount of characters:
 
 ```python
-import better_exceptions
-better_exceptions.MAX_LENGTH = None
+import ng_exceptions
+ng_exceptions.MAX_LENGTH = None
 ```
 
-While using `better_exceptions` in production, do not forget to unset the `BETTER_EXCEPTIONS` variable to avoid leaking sensitive data in your logs.
+While using `ng_exceptions` in production, do not forget to unset the `NG_EXCEPTIONS` variable to avoid leaking sensitive data in your logs.
 
 ### Use with unittest
 
-If you want to use `better_exceptions` to format `unittest`'s exception output, you can use the monkey patch below:
+If you want to use `ng_exceptions` to format `unittest`'s exception output, you can use the monkey patch below:
 
 ```python
 import sys
 import unittest
-import better_exceptions
+import ng_exceptions
 
 def patch(self, err, test):
-    lines = better_exceptions.format_exception(*err)
+    lines = ng_exceptions.format_exception(*err)
     if sys.version_info[0] == 2:
         return u"".join(lines).encode("utf-8")
     return "".join(lines)
@@ -73,10 +73,10 @@ Create a middleware exception handler in a file like `myapp/middleware.py`:
 
 ```python
 import sys
-from better_exceptions import excepthook
+from ng_exceptions import excepthook
 
 
-class BetterExceptionsMiddleware(object):
+class NgExceptionsMiddleware(object):
     def __init__(self, get_response):
         self.get_response = get_response
 
